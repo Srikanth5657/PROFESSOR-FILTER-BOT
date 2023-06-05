@@ -25,19 +25,7 @@ BUTTONS = {}
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
-    settings = await get_settings(message.chat.id)
-    if settings["auto_filter"]:
-        userid = message.from_user.id if message.from_user else None
-        if not userid:
-            search = message.text
-            k = await message.reply(f"You'r anonymous admin! Sorry you can't get '{search}' from here.\nYou can get '{search}' from bot inline search.")
-            await asyncio.sleep(30)
-            await k.delete()
-            try:
-                await message.delete()
-            except:
-                pass
-            return
+    
 
         if AUTH_CHANNEL and not await is_subscribed(client, message):
             try:
